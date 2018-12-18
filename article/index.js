@@ -3,16 +3,19 @@ const renderer = require('../modules/renderer');
 
 module.exports = async function (context, req) {
 
-    const isValidArticleType = rules.isSupportedType(req.query.articleType);
-    const isValidOutputType = renderer.isSupportedType(req.query.output);
-    const isValidSource = !!(req.body && req.body.length > 0);
+    const isValidType = rules.isSupportedType(req.query.type);
+    const isValidOutput = renderer.isSupportedType(req.query.output);
+    const isValidSource = !!(req.body);
+    const body = req.body.toString('utf8');
 
-    context.log('body: ' + req.body);
+    if (isValidType && isValidOutput && isValidSource) {
 
-    if (isValidArticleType && isValidOutputType && isValidSource) {
+        const type = req.query.type;
+        const output = req.query.output;
+        const isOutputJSON = /json/.test(output);
 
-        const articleType = req.query.articleType;
-        const outputType = req.query.output;
+        const feedback = rules.apply(body, type);
+        const result = renderer.render(feedback, output);
 
         const feedback = rules.apply(req.body, articleType);
         const result = renderer.render(feedback, outputType);
@@ -21,7 +24,7 @@ module.exports = async function (context, req) {
             status: 200,
             body: {
                 isValid: true,
-                details: /json/.test(outputType) ? result.details : result
+                details: isOutputJSON ? result.details : result
             }
         };
     }
@@ -30,9 +33,9 @@ module.exports = async function (context, req) {
             status: 400,
             body: {
                 message: 'Please provide a valid article type, render type and article source.',
-                isValid: isValidArticleType && isValidOutputType && isValidSource,
-                isValidArticleType: isValidArticleType,
-                isValidRenderType: isValidOutputType,
+                isValid: isValidType && isValidOutput && isValidSource,
+                isValidArticleType: isValidType,
+                isValidRenderType: isValidOutput,
                 isValidSource: isValidSource,
             }
         };
