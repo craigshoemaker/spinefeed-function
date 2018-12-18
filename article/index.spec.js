@@ -11,44 +11,38 @@ describe('article function', () => {
 
     const request = {
             query: {
-                articleType: 'quickstart',
+                type: 'quickstart',
                 output: '' // set in tests
             },
-            body: {
-                source: quickstartMarkdown
-            }
+            body: quickstartMarkdown
         };
 
-    it('should return json', async (done) => {
+    it('should return json', async () => {
         request.query.output = 'json';
         await func(context, request);
         expect(context.res.body.isValid).toBeTruthy();
-        expect(context.res.body[1].total).toBeGreaterThan(0);
-        done();
+        expect(context.res.body.details[1].total).toBeGreaterThan(0);
     });
 
-    it('should return html', async (done) => {
+    it('should return html', async () => {
         request.query.output = 'html';
         await func(context, request);
         expect(context.res.body.isValid).toBeTruthy();
-        expect(/\<h2/i.test(context.res.body)).toBeTruthy();
-        done();
+        expect(/\<h2/i.test(context.res.body.details)).toBeTruthy();
     });
 
-    it('should return markdown', async (done) => {
+    it('should return markdown', async () => {
         request.query.output = 'markdown';
         await func(context, request);
         expect(context.res.body.isValid).toBeTruthy();
-        expect(/## /i.test(context.res.body)).toBeTruthy();
-        done();
+        expect(/## /i.test(context.res.body.details)).toBeTruthy();
     });
 
-    it('should return a string', async (done) => {
+    it('should return a string', async () => {
         request.query.output = 'string';
         await func(context, request);
         expect(context.res.body.isValid).toBeTruthy();
-        expect(/-------------/i.test(context.res.body)).toBeTruthy();
-        done();
+        expect(/-------------/i.test(context.res.body.details)).toBeTruthy();
     });
 
 });
