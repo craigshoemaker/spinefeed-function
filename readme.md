@@ -18,6 +18,7 @@ const url = `https://spinefeed.azurewebsites.net/api/article?type=<TYPE>&output=
 const headers = { 'Content-Type': 'application/json' };
 const data = `<ARTICLE_TEXT>`; // pass in article text here 
 const response = await axios.post(url, data, headers);
+const markup = response.data.details // generated HTML
 ```
 
 Which produces something similar to following output:
