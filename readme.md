@@ -11,58 +11,25 @@ Based on the parameters you pass in, you can check different document types and 
 | *output*  | Determines the output rendered. Values include `json` (default), `string`, `markdown` and `html`. |
 
 ### Examples
-Check a quickstart and render the output as a string (perfect for the console).
+Check a quickstart and render the output as HTML.
 
-```bash
-node index.js --type quickstart --output string --src "c:\quickstart.md"
+```javascript
+const url = `https://spinefeed.azurewebsites.net/api/article?type=<TYPE>&output=html`;
+const headers = { 'Content-Type': 'application/json' };
+const data = `<ARTICLE_TEXT>`; // pass in article text here 
+const response = await axios.post(url, data, headers);
 ```
 
 Which produces something similar to following output:
 
-```bash
-Validation Summary:
-----------------------------
-- Total: 7, Passed: 0, Failed: 7
-
-
-General
-...........................
-- Total: 2, Passed: 0, Failed: 2
-- Broken rules:
-  * H1 title must immediately follow metadata
-  * Document must include metadata
-
-
-Quickstart
-...........................
-- Total: 5, Passed: 0, Failed: 5
-- Broken rules:
-  * H1 format must be: "Quickstart: "
-  * Required section: "Clean up resources"
-  * Required section: "Next steps"
-  * Link to free Azure account must come before first H2
-  * "Clean up resouces" section must appear before "Next steps" section
-```
-
-The same information is available in Markdown format. The following command:
-
-```bash
-node index.js --type quickstart --output markdown --src "c:\quickstart.md"
-```
-
-... produces output like this:
-
-```bash
 ## Validation Summary:
 - Total: 7, Passed: 0, Failed: 7
-
 
 ### General
 - Total: 2, Passed: 0, Failed: 2
 - Broken rules:
   * H1 title must immediately follow metadata
   * Document must include metadata
-
 
 ### Quickstart
 - Total: 5, Passed: 0, Failed: 5
@@ -72,4 +39,3 @@ node index.js --type quickstart --output markdown --src "c:\quickstart.md"
   * Required section: "Next steps"
   * Link to free Azure account must come before first H2
   * "Clean up resouces" section must appear before "Next steps" section
-```
