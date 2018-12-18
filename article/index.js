@@ -17,9 +17,6 @@ module.exports = async function (context, req) {
         const feedback = rules.apply(body, type);
         const result = renderer.render(feedback, output);
 
-        const feedback = rules.apply(req.body, articleType);
-        const result = renderer.render(feedback, outputType);
-
         context.res = {
             status: 200,
             body: {
@@ -27,6 +24,10 @@ module.exports = async function (context, req) {
                 details: isOutputJSON ? result.details : result
             }
         };
+
+        if(isOutputJSON) {
+            context.res.contentType = 'application/json';
+        }
     }
     else {
         context.res = {
