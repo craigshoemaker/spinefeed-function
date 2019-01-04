@@ -1,6 +1,6 @@
 ![Spinefeed](./spinefeed-logo.png)
 
-Provides feedback on articles for required content elements.
+Provides feedback on articles for required content elements. This function is exposed via a [web interface](http://craigshoemaker.github.io/spinefeed-website) and [VS Code extension](http://craigshoemaker.github.io/spinefeed-extension).
 
 ## Usage
 Based on the parameters you pass in, you can check different document types and output the results in different formats.
