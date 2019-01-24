@@ -14,11 +14,19 @@ Based on the parameters you pass in, you can check different document types and 
 Check a quickstart and render the output as HTML.
 
 ```javascript
-const url = `https://spinefeed.azurewebsites.net/api/article?type=<TYPE>&output=html`;
-const headers = { 'Content-Type': 'application/json' };
-const data = `<ARTICLE_TEXT>`; // pass in article text here 
-const response = await axios.post(url, data, headers);
-const markup = response.data.details // generated HTML
+const getFeedback = async => {
+    const url = `https://spinefeed.azurewebsites.net/api/article?type=quickstart&output=html`;
+    const options = {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: '<ARTICLE_TEXT>' // pass in article text here 
+    };
+    const response = await fetch(url, options);
+    const html = await response.text();
+    return html;
+}
+
+getFeedback().then(html => console.log(html));
 ```
 
 Which produces something similar to following output:
