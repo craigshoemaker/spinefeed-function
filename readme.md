@@ -14,7 +14,7 @@ Based on the parameters you pass in, you can check different document types and 
 Check a quickstart and render the output as HTML.
 
 ```javascript
-const getFeedback = async => {
+const getFeedback = async () => {
     const url = `https://spinefeed.azurewebsites.net/api/article?type=quickstart&output=html`;
     const options = {
         method: 'post',
