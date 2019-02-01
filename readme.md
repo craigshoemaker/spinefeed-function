@@ -48,3 +48,12 @@ Which produces something similar to following output:
   * Required section: "Next steps"
   * Link to free Azure account must come before first H2
   * "Clean up resouces" section must appear before "Next steps" section
+
+## Tests
+
+Each validation rule is accompanied by a series of tests. Run the tests via:
+
+```bash
+npm test
+```
+
