@@ -1,16 +1,25 @@
 const rules = require('../modules/validationRules');
 const renderer = require('../modules/renderer');
 
+const getArticleType = (content) => {
+	const matches = content.match(/ms\.topic:(.*)/);
+	let type = '';
+	if(matches.length > 1) {
+		type = matches[1].trim();
+	}
+	return type;
+};
+
 module.exports = async function (context, req) {
 
-    const isValidType = rules.isSupportedType(req.query.type);
+    // const isValidType = rules.isSupportedType(req.query.type);
     const isValidOutput = renderer.isSupportedType(req.query.output);
     const isValidSource = !!(req.body);
     const body = req.body.toString('utf8');
 
-    if (isValidType && isValidOutput && isValidSource) {
+    if (isValidOutput && isValidSource) {
 
-        const type = req.query.type;
+        const type = getArticleType(body);
         const output = req.query.output;
         const isOutputJSON = /json/.test(output);
 
@@ -33,7 +42,7 @@ module.exports = async function (context, req) {
         context.res = {
             status: 400,
             body: {
-                message: 'Please provide a valid article type, render type and article source.',
+                message: 'Please provide a valid render type and article source.',
                 isValid: isValidType && isValidOutput && isValidSource,
                 isValidArticleType: isValidType,
                 isValidRenderType: isValidOutput,
