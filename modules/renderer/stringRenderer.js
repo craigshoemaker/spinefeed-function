@@ -1,16 +1,19 @@
 const markdownRenderer = require('./markdownRenderer')
 
 const _module = {
-    render: input => {
-        let result = markdownRenderer.render(input);
+    render: data => {
+        let markdown = markdownRenderer.render(data);
 
         // replace H3s
-        result = result.replace(/\#\#\# ?(.+)/g, '$1\n...........................');
+        markdown = markdown.string.replace(/\#\#\# ?(.+)/g, '$1\n...........................');
         
         // replace H2s
-        result = result.replace(/\#\# ?(.+)/g, '$1\n----------------------------');
+        markdown = markdown.replace(/\#\# ?(.+)/g, '$1\n----------------------------');
 
-        return result;
+        return {
+            string: markdown,
+            data: data
+        };
     }
 };
 

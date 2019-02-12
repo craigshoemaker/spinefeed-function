@@ -11,8 +11,7 @@ describe('markdownRenderer => ', () => {
 
         it('renders string titles', () => {
             const result = renderer.render(rulesResult, output);
-            expect(/\.{20,}/.test(result)).toBe(true);            
-            expect(/\-{20,}/.test(result)).toBe(true);
+            expect(/\.{20,}/.test(result.string)).toBe(true);
         });
 
     });

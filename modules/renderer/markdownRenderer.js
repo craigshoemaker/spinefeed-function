@@ -6,7 +6,7 @@ const _module = {
         const builder = [];
 
         builder.push('\n');
-        builder.push(`## Validation Summary:`);
+        builder.push(`### Validation Summary:`);
         builder.push(`- Total: ${result.total}, Passed: ${result.passed}, Failed: ${result.failed}`);
 
         if(!result.allPassed) {
@@ -25,7 +25,10 @@ const _module = {
             });
         }
         
-        return builder.join('\n');
+        return {
+            string: builder.join('\n'),
+            data: result
+        }
     }
 
 };

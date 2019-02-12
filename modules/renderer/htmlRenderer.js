@@ -2,9 +2,13 @@ const markdownRenderer = require('./markdownRenderer')
 const marked = require('marked');
 
 const _module = {
-    render: input => {
-        let result = markdownRenderer.render(input);
-        return marked(result);
+    render: data => {
+        const result = markdownRenderer.render(data);
+        const html = marked(result.string);
+        return {
+            string: html,
+            data: data
+        };
     }
 };
 

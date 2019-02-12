@@ -11,7 +11,7 @@ describe('htmlRenderer => ', () => {
 
         it('renders HTML markup', () => {
             const result = renderer.render(rulesResult, output);
-            expect(/<.*?>/.test(result)).toBe(true);            
+            expect(/<.*?>/.test(result.string)).toBe(true);            
         });
 
     });

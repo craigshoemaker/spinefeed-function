@@ -28,21 +28,22 @@ describe('article function', () => {
         request.query.output = 'html';
         await func(context, request);
         expect(context.res.body.isValid).toBeTruthy();
-        expect(/\<h2/i.test(context.res.body.details)).toBeTruthy();
+        expect(/\<h3/i.test(context.res.body.details.string)).toBeTruthy();
     });
 
     it('should return markdown', async () => {
         request.query.output = 'markdown';
         await func(context, request);
         expect(context.res.body.isValid).toBeTruthy();
-        expect(/## /i.test(context.res.body.details)).toBeTruthy();
+        expect(/### /i.test(context.res.body.details.string)).toBeTruthy();
     });
 
     it('should return a string', async () => {
         request.query.output = 'string';
         await func(context, request);
         expect(context.res.body.isValid).toBeTruthy();
-        expect(/-------------/i.test(context.res.body.details)).toBeTruthy();
+        console.log(context.res.body.details.string);
+        expect(/\.{20,}/i.test(context.res.body.details.string)).toBeTruthy();
     });
 
 });

@@ -5,13 +5,13 @@ module.exports = async function (context, req) {
 
     const output = req.query.output;
     const isValidOutput = renderer.isSupportedType(output);
-    const isValidSource = !!(req.body);
-    const content = req.body.toString('utf8');
+    const isValidBatch = !!(req.body);
+    const batch = req.body;
 
-    if (isValidOutput && isValidSource) {
+    if (isValidOutput && isValidBatch) {
 
         const isOutputJSON = validator.isJSON(output);
-        const result = validator.validate(content, output);
+        const result = validator.validateBatch(batch, output);
 
         context.res = {
             status: 200,

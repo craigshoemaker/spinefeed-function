@@ -35,18 +35,19 @@ describe('markdownRenderer => ', () => {
 
         it('does not render type section if there are no broken rules for the type', () => {
             const result = renderer.render(generalOnly, output);
-            expect(/Quickstart/.test(result)).toBe(false);
+            expect(/Quickstart/.test(result.string)).toBe(false);
         });
 
         it('renders markdown titles', () => {
             const result = renderer.render(rulesResult, output);
-            expect(/\#\# .+/.test(result)).toBe(true);
+            expect(/\#\# .+/.test(result.string)).toBe(true);
         });
 
         it('renders markdown list items', () => {
             const result = renderer.render(rulesResult, output);
-            expect(/\- .+/.test(result)).toBe(true);
-            expect(/  \* .+/.test(result)).toBe(true);
+            const renderedString = result.string;
+            expect(/\- .+/.test(renderedString)).toBe(true);
+            expect(/  \* .+/.test(renderedString)).toBe(true);
         });
 
     });
