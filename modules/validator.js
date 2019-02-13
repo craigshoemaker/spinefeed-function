@@ -6,10 +6,19 @@ const validator = {
     getArticleType: (content) => {
         const matches = content.match(/ms\.topic:(.*)/);
         let type = '';
-        if(matches.length > 1) {
+        if(matches && matches.length > 1) {
             type = matches[1].trim();
         }
         return type;
+    },
+
+    getArticleTitle: (content) => {
+        const matches = content.match(/\#\s(.+)/);
+        let title = 'TITLE NOT FOUND';
+        if(matches && matches.length > 1) {
+            title = matches[1].trim();
+        }
+        return title;
     },
 
     isJSON: (value) => /json/.test(value),
@@ -24,6 +33,7 @@ const validator = {
 
         batch.forEach(article => {
             const articleResult = validator.validate(article.content, output);
+            const title = validator.getArticleTitle(article.content);
 
             batchResults.total++;
 
@@ -36,7 +46,8 @@ const validator = {
             batchResults.articles.push({
                 filePath: article.filePath,
                 string: articleResult.string,
-                data: articleResult.data
+                data: articleResult.data,
+                title: title
             });
         });
 
