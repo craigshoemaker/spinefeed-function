@@ -7,7 +7,7 @@ const _module = {
     rules: [
         {
             description: 'H1 title must immediately follow metadata',
-            apply: input => /---\n(\n)?\#/.test(input)
+            apply: input => /---\s*\# /.test(input)
         },
 
         {

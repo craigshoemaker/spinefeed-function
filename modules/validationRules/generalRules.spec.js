@@ -37,6 +37,12 @@ describe('general rules => ', () => {
             expect(result.allPassed).toBe(true);
         });
 
+        it('no blank like between metadata and H1 title', () => {
+            const valid = validInput.replace(/---\n\n\#/, '---\n#');
+            const results = generalRules.apply(valid);
+            expect(results.brokenRules.includes('H1 title must immediately follow metadata')).toBe(false);
+        });
+
     });
 
     describe('fails', () => {

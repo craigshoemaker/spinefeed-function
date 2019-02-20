@@ -42,7 +42,6 @@ describe('article function', () => {
         request.query.output = 'string';
         await func(context, request);
         expect(context.res.body.isValid).toBeTruthy();
-        console.log(context.res.body.details.string);
         expect(/\.{20,}/i.test(context.res.body.details.string)).toBeTruthy();
     });
 
