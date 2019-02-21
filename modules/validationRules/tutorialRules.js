@@ -98,6 +98,11 @@ const _module = {
         {
             description: 'Article must be introduced as "In this tutorial"',
             apply: input => !/In this (guide|article|topic)/.test(input)
+        },
+
+        {
+            description: 'Titles may not start with "Step" followed by a number',
+            apply: input => !/\#{2,}\s+Step:?\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|[1-9])/g.test(input)
         }
     ],
 
