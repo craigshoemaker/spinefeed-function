@@ -20,7 +20,7 @@ const _module = {
             apply: input => {
                 let returnValue = true;
 
-                const links = input.match(/\]\((~|\.).*\)/g);
+                const links = input.match(/]\((?!http|https)(.*?)\)/g);
                 
                 if(links) {
                     const linksMissingExtension = links.filter(link => {
