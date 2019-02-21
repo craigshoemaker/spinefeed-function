@@ -3,10 +3,13 @@ const rules = require('./tutorialRules');
 const validInput = `
 ---
 title: This is a tutorial
+description: This is a tutorial
 ms.topic: tutorial
 ---
 
 # Tutorial: Yep?
+
+Sentence number one. Sentence number two. Sentence number three. Sentence number four. Sentence number five. Sentence number six.
 
 > [!div class="checklist"]
 > * Create and connect to a VM
@@ -96,6 +99,18 @@ describe('tutorialRules => ', () => {
             const invalid = validInput.replace('title: This is a tutorial', 'title: This is a quickstart');
             const results = rules.apply(invalid);
             expect(results.brokenRules.includes('The word "tutorial" must appear in metadata title')).toBe(true);
+        });
+
+        it('Metadata description does not include "tutorial"', () => {
+            const invalid = validInput.replace('description: This is a tutorial', 'description: This is a quickstart');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('The word "tutorial" must appear in metadata description')).toBe(true);
+        });
+
+        it('Introductory paragraph should be no more than 6 sentences.', () => {
+            const invalid = validInput.replace('Sentence number six.', 'Sentence number six. Sentence number seven.');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('Introductory sentence must be no more than 6 sentences.')).toBe(true);
         });
 
     });

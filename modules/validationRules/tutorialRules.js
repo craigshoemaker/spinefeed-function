@@ -61,6 +61,23 @@ const _module = {
         {
             description: 'The word "tutorial" must appear in metadata title',
             apply: input => /title:.*tutorial.*/i.test(input)
+        },
+
+        {
+            description: 'The word "tutorial" must appear in metadata description',
+            apply: input => /description:.*tutorial.*/i.test(input)
+        }, 
+
+        {
+            description: 'Introductory sentence must be no more than 6 sentences.', 
+            apply: input => {
+                let value = false;
+                const introduction = input.match(/\n\#.+\n\n(.*)/);
+                if (introduction && introduction.length > 0) {
+                  value = introduction[1].match(/\.\s/g).length < 6;
+                }
+                return value;
+            }
         }
     ],
 
