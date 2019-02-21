@@ -64,12 +64,6 @@ describe('general rules => ', () => {
             const results = generalRules.apply(invalid);
             expect(results.brokenRules.includes('Relative links must end with the ".md" extension')).toBe(true);
         });
-
-        it('Required metadata: Customer intent', () => {
-            const invalid = validInput.replace('# Customer intent: this is the customer intent', '');
-            const results = generalRules.apply(invalid);
-            expect(results.brokenRules.includes('Required metadata: Customer intent')).toBe(true);
-        });
     });
 
 });

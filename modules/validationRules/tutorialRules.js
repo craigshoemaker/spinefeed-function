@@ -78,6 +78,11 @@ const _module = {
                 }
                 return value;
             }
+        },
+
+        {
+            description: 'Required metadata: Customer intent statement',
+            apply: input => commonRules.requireCustomerIntent(input)
         }
     ],
 

@@ -49,6 +49,11 @@ const _module = {
             apply: input => {
                 return !/class="checklist"/.test(input)
             }
+        },
+
+        {
+            description: 'Required metadata: Customer intent statement',
+            apply: input => commonRules.requireCustomerIntent(input)
         }
     ],
 

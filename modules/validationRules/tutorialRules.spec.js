@@ -5,6 +5,8 @@ const validInput = `
 title: This is a tutorial
 description: This is a tutorial
 ms.topic: tutorial
+
+# Customer intent: this is the customer intent
 ---
 
 # Tutorial: Yep?
@@ -111,6 +113,12 @@ describe('tutorialRules => ', () => {
             const invalid = validInput.replace('Sentence number six.', 'Sentence number six. Sentence number seven.');
             const results = rules.apply(invalid);
             expect(results.brokenRules.includes('Introductory sentence must be no more than 6 sentences.')).toBe(true);
+        });
+
+        it('Required metadata: Customer intent', () => {
+            const invalid = validInput.replace('# Customer intent: this is the customer intent', '');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('Required metadata: Customer intent statement')).toBe(true);
         });
 
     });

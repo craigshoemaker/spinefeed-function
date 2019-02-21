@@ -14,6 +14,10 @@ const _module = {
         }
     },
 
+    requireCustomerIntent: (input) => {
+        return /\#\s+customer intent:\s+.+/i.test(input);
+    },
+
     linkToFreeAccountBeforeFirstH2 : {
         description: 'Link to free Azure account must come before first H2',
         apply: input =>  {

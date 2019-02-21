@@ -14,7 +14,7 @@ ms.topic: quickstart
 ms.date: 03/15/2018
 ms.author: cshoe
 
-# Customer intent: This is a very special customer intent statement.
+# Customer intent: this is the customer intent
 ---
 
 # Quickstart: Sample quickstart
@@ -101,6 +101,12 @@ describe('quickstartRules => ', () => {
             const invalid = validInput.replace('azure.microsoft.com/free', '');
             const results = rules.apply(invalid);
             expect(results.brokenRules.includes('Link to free Azure account must come before first H2')).toBe(true);
+        });
+
+        it('Required metadata: Customer intent', () => {
+            const invalid = validInput.replace('# Customer intent: this is the customer intent', '');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('Required metadata: Customer intent statement')).toBe(true);
         });
     });
 
