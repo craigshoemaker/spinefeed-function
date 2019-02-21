@@ -13,6 +13,8 @@ ms.topic: tutorial
 
 Sentence number one. Sentence number two. Sentence number three. Sentence number four. Sentence number five. Sentence number six.
 
+In this tutorial you learn to work with Azure.
+
 > [!div class="checklist"]
 > * Create and connect to a VM
 > * Select and use VM images
@@ -119,6 +121,12 @@ describe('tutorialRules => ', () => {
             const invalid = validInput.replace('# Customer intent: this is the customer intent', '');
             const results = rules.apply(invalid);
             expect(results.brokenRules.includes('Required metadata: Customer intent statement')).toBe(true);
+        });
+
+        it('Required sentence after intro paragraph: "In this tutorial"', () => {
+            const invalid = validInput.replace('In this tutorial you learn to work with Azure', '');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('Required sentence after intro paragraph: "In this tutorial"')).toBe(true);
         });
 
     });

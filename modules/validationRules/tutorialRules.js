@@ -83,6 +83,11 @@ const _module = {
         {
             description: 'Required metadata: Customer intent statement',
             apply: input => commonRules.requireCustomerIntent(input)
+        },
+
+        {
+            description: 'Required sentence after intro paragraph: "In this tutorial"',
+            apply: input => /\#\s+.*\n{2,}.+\n{2,}In this tutorial/.test(input)
         }
     ],
 
