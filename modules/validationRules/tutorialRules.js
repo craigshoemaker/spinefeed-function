@@ -56,6 +56,11 @@ const _module = {
 
                 return prereqIndex === firstH2Index;
             }
+        },
+
+        {
+            description: 'The word "tutorial" must appear in metadata title',
+            apply: input => /title:.*tutorial.*/i.test(input)
         }
     ],
 

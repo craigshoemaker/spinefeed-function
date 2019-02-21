@@ -2,6 +2,7 @@ const rules = require('./tutorialRules');
 
 const validInput = `
 ---
+title: This is a tutorial
 ms.topic: tutorial
 ---
 
@@ -89,6 +90,12 @@ describe('tutorialRules => ', () => {
             const invalid = validInput.replace('## Prerequisites', '## First H2');
             const results = rules.apply(invalid);
             expect(results.brokenRules.includes('Prerequisites must be the first H2')).toBe(true);
+        });
+
+        it('Metadata title does not include "tutorial"', () => {
+            const invalid = validInput.replace('title: This is a tutorial', 'title: This is a quickstart');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('The word "tutorial" must appear in metadata title')).toBe(true);
         });
 
     });
