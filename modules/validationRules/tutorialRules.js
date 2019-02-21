@@ -94,6 +94,11 @@ const _module = {
             description: 'Checklist is required after paragraph that contains "In this tutorial"',
             apply: input => /\#\s+.*\n{2,}.+\n{2,}In this tutorial.+\n{2,}\> \[\!div class=\"checklist\"\]/.test(input)
         },
+
+        {
+            description: 'Article must be introduced as "In this tutorial"',
+            apply: input => !/In this (guide|article|topic)/.test(input)
+        }
     ],
 
     apply: (input) => ruleApplicator(input, _module)

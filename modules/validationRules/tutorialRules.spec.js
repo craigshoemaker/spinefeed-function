@@ -135,6 +135,12 @@ describe('tutorialRules => ', () => {
             expect(results.brokenRules.includes('Checklist is required after paragraph that contains "In this tutorial"')).toBe(true);
         });
 
+        it('Article must be introduced as "In this tutorial"', () => {
+            const invalid = validInput.replace('In this tutorial', 'In this article');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('Article must be introduced as "In this tutorial"')).toBe(true);
+        });
+
     });
 
 });
