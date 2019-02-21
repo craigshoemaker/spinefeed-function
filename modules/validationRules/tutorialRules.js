@@ -103,6 +103,11 @@ const _module = {
         {
             description: 'Titles may not start with "Step" followed by a number',
             apply: input => !/\#{2,}\s+Step:?\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|[1-9])/g.test(input)
+        },
+
+        {
+            description: 'Next step action formatted link is required after Next steps title',
+            apply: input => /##\s+Next steps\n{2,}\> \[\!div class=\"nextstepaction\"\]/.test(input)
         }
     ],
 

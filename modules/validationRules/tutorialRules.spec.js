@@ -29,7 +29,10 @@ To complete this quickstart, you need an [Azure subscription](https://azure.micr
 
 ## Clean up resources
 
-## Next steps`;
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Azure Windows virtual machine tutorials](./tutorial-manage-vm.md)`;
 
 describe('tutorialRules => ', () => {
 
@@ -145,6 +148,12 @@ describe('tutorialRules => ', () => {
             const invalid = validInput.replace('## Prerequisites', '## Step 1: Prerequisites');
             const results = rules.apply(invalid);
             expect(results.brokenRules.includes('Titles may not start with "Step" followed by a number')).toBe(true);
+        });
+
+        it('Next step action formatted link is required after Next steps title', () => {
+            const invalid = validInput.replace('nextstepaction', '');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('Next step action formatted link is required after Next steps title')).toBe(true);
         });
 
     });
