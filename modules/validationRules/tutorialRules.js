@@ -88,7 +88,12 @@ const _module = {
         {
             description: 'Required sentence after intro paragraph: "In this tutorial"',
             apply: input => /\#\s+.*\n{2,}.+\n{2,}In this tutorial/.test(input)
-        }
+        },
+
+        {
+            description: 'Checklist is required after paragraph that contains "In this tutorial"',
+            apply: input => /\#\s+.*\n{2,}.+\n{2,}In this tutorial.+\n{2,}\> \[\!div class=\"checklist\"\]/.test(input)
+        },
     ],
 
     apply: (input) => ruleApplicator(input, _module)

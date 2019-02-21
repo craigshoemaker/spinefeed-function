@@ -129,6 +129,12 @@ describe('tutorialRules => ', () => {
             expect(results.brokenRules.includes('Required sentence after intro paragraph: "In this tutorial"')).toBe(true);
         });
 
+        it('Checklist is required after paragraph that contains "In this tutorial"', () => {
+            const invalid = validInput.replace('[!div class="checklist"]', '');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('Checklist is required after paragraph that contains "In this tutorial"')).toBe(true);
+        });
+
     });
 
 });
