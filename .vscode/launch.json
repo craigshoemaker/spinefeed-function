@@ -7,6 +7,13 @@
       "request": "attach",
       "port": 5858,
       "preLaunchTask": "runFunctionsHost"
+    },
+    { 
+      "type": "node", 
+      "request": "launch", 
+      "name": "Jasmine Tests", 
+      "program": "${workspaceRoot}\\node_modules\\jasmine\\bin\\jasmine.js",
+      //"args": ["spec\\todoSpec.js"], 
     }
   ]
 }
