@@ -55,6 +55,11 @@ const _module = {
             description: 'The word "quickstart" must appear in metadata description',
             apply: input => commonRules.requireKeywordInMetadataDescription(input, 'quickstart')
         }, 
+
+        {
+            description: 'The word "quickstart" must appear in metadata title',
+            apply: input => commonRules.requireKeywordInMetadataTitle(input, 'quickstart')
+        },
     ],
 
     apply: (input) => ruleApplicator(input, _module)

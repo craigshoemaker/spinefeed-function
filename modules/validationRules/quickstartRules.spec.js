@@ -108,6 +108,12 @@ describe('quickstartRules => ', () => {
             const results = rules.apply(invalid);
             expect(results.brokenRules.includes('The word "quickstart" must appear in metadata description')).toBe(true);
         });
+
+        it('Metadata title does not include "quickstart"', () => {
+            const invalid = validInput.replace('title: Azure Quickstart', 'title: Azure Foo');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('The word "quickstart" must appear in metadata title')).toBe(true);
+        });
     });
 
 });
