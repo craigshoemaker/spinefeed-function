@@ -107,7 +107,8 @@ const _module = {
 
         {
             description: 'Next step action formatted link is required after Next steps title',
-            apply: input => /##\s+Next steps\n{2,}\> \[\!div class=\"nextstepaction\"\]/.test(input)
+            //apply: input => /##\s+Next steps\n{2,}\> \[\!div class=\"nextstepaction\"\]/.test(input)
+            apply: input => commonRules.requireNextStepActionFormattedLink(input)
         }
     ],
 

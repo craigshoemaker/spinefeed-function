@@ -33,6 +33,8 @@ const _module = {
         return regex.test(input);
     },
 
+    requireNextStepActionFormattedLink: input => /##\s+Next steps\n{2,}\> \[\!div class=\"nextstepaction\"\]/.test(input),
+
     disallowUseOfAlternateArticleDescriptors: (input) => !/In this (guide|article|topic)/.test(input),
 
     disallowTitlesPrefixedByStep: input => !/\#{2,}\s+Step:?\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|[1-9])/gi.test(input),

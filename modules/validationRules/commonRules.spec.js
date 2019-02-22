@@ -26,6 +26,10 @@ This topic provides general guidance for handling errors that occur when your fu
 
 In this tutorial you learn new and wonderful things!
 
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Azure Windows virtual machine tutorials](./tutorial-manage-vm.md)
 `;
 
 describe('commonRules => ', () => {
@@ -75,6 +79,12 @@ describe('commonRules => ', () => {
     it('Titles may not start with "Step" followed by a number (string)', () => {
         const invalid = validInput.replace('# Azure Functions error handling', '## Step Eight: Azure Functions error handling');
         const results = commonRules.disallowTitlesPrefixedByStep(invalid);
+        expect(results).toBe(false);
+    });
+
+    it('Next step action formatted link is required after Next steps title', () => {
+        const invalid = validInput.replace('nextstepaction', '');
+        const results = commonRules.requireNextStepActionFormattedLink(invalid);
         expect(results).toBe(false);
     });
 
