@@ -91,6 +91,11 @@ const _module = {
             description: 'Titles may not start with "Step" followed by a number',
             apply: input => commonRules.disallowTitlesPrefixedByStep(input)
         },
+
+        {
+            description: 'Next step action formatted link is required after Next steps title',
+            apply: input => commonRules.requireNextStepActionFormattedLink(input)
+        },
         
     ],
 

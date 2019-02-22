@@ -33,7 +33,7 @@ const _module = {
         return regex.test(input);
     },
 
-    requireNextStepActionFormattedLink: input => /##\s+Next steps\n{2,}\> \[\!div class=\"nextstepaction\"\]/.test(input),
+    requireNextStepActionFormattedLink: input => /##\s+Next steps\n{1,}\> \[\!div class=\"nextstepaction\"\]/.test(input),
 
     disallowUseOfAlternateArticleDescriptors: (input) => !/In this (guide|article|topic)/.test(input),
 
