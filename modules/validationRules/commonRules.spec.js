@@ -46,4 +46,10 @@ describe('commonRules => ', () => {
         expect(results).toBe(false);
     });
 
+    it('Require keyword in metadata title', () => {
+        const invalid = validInput.replace('title: Azure Functions', 'title: Foo Functions');
+        const results = commonRules.requireKeywordInMetadataDescription(invalid, 'Azure');
+        expect(results).toBe(false);
+    });
+
 });

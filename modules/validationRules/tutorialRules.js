@@ -60,7 +60,7 @@ const _module = {
 
         {
             description: 'The word "tutorial" must appear in metadata title',
-            apply: input => /title:.*tutorial.*/i.test(input)
+            apply: input => commonRules.requireKeywordInMetadataTitle(input, 'tutorial')
         },
 
         {

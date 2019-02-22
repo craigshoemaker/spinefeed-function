@@ -23,6 +23,11 @@ const _module = {
         return regex.test(input);
     },
 
+    requireKeywordInMetadataTitle: (input, keyword) => {
+        const regex = new RegExp(`title:.*${keyword}.*`, 'i');
+        return regex.test(input);
+    },
+
     linkToFreeAccountBeforeFirstH2 : {
         description: 'Link to free Azure account must come before first H2',
         apply: input =>  {
