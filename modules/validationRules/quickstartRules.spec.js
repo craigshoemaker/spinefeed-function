@@ -138,6 +138,12 @@ describe('quickstartRules => ', () => {
             const results = rules.apply(invalid);
             expect(results.brokenRules.includes('Prerequisites must be the first H2')).toBe(true);
         });
+
+        it('Titles may not start with "Step" followed by a number', () => {
+            const invalid = validInput.replace('## Prerequisites', '## Step 1: Prerequisites');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('Titles may not start with "Step" followed by a number')).toBe(true);
+        });
     });
 
 });
