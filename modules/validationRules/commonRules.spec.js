@@ -24,6 +24,8 @@ ms.author: cshoe
 
 This topic provides general guidance for handling errors that occur when your functions execute. It also provides links to the topics that describe binding-specific errors that may occur. 
 
+In this tutorial you learn new and wonderful things!
+
 `;
 
 describe('commonRules => ', () => {
@@ -49,6 +51,12 @@ describe('commonRules => ', () => {
     it('Require keyword in metadata title', () => {
         const invalid = validInput.replace('title: Azure Functions', 'title: Foo Functions');
         const results = commonRules.requireKeywordInMetadataDescription(invalid, 'Azure');
+        expect(results).toBe(false);
+    });
+
+    it('Require keyword in first sentence after first paragraph', () => {
+        const invalid = validInput.replace('In this tutorial', 'In this foo');
+        const results = commonRules.requireKeywordInFirstSentenceAfterFirstParagraph(invalid, 'tutorial');
         expect(results).toBe(false);
     });
 

@@ -28,6 +28,11 @@ const _module = {
         return regex.test(input);
     },
 
+    requireKeywordInFirstSentenceAfterFirstParagraph: (input, keyword) => {
+        const regex = new RegExp(`\\#\\s+.*\\n{2,}.+\\n{2,}In this ${keyword}`);
+        return regex.test(input);
+    },
+
     linkToFreeAccountBeforeFirstH2 : {
         description: 'Link to free Azure account must come before first H2',
         apply: input =>  {

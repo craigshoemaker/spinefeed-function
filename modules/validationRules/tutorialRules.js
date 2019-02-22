@@ -87,7 +87,7 @@ const _module = {
 
         {
             description: 'Required sentence after intro paragraph: "In this tutorial"',
-            apply: input => /\#\s+.*\n{2,}.+\n{2,}In this tutorial/.test(input)
+            apply: input => commonRules.requireKeywordInFirstSentenceAfterFirstParagraph(input, 'tutorial')
         },
 
         {
