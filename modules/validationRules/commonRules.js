@@ -18,6 +18,11 @@ const _module = {
         return /\#\s+customer intent:\s+.+/i.test(input);
     },
 
+    requireKeywordInMetadataDescription: (input, keyword) => {
+        const regex = new RegExp(`description:.*${keyword}.*`, 'i');
+        return regex.test(input);
+    },
+
     linkToFreeAccountBeforeFirstH2 : {
         description: 'Link to free Azure account must come before first H2',
         apply: input =>  {

@@ -102,6 +102,12 @@ describe('quickstartRules => ', () => {
             const results = rules.apply(invalid);
             expect(results.brokenRules.includes('Required metadata: Customer intent statement')).toBe(true);
         });
+
+        it('Metadata description does not include "quickstart"', () => {
+            const invalid = validInput.replace('description: In this quickstart', 'description: ');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('The word "quickstart" must appear in metadata description')).toBe(true);
+        });
     });
 
 });

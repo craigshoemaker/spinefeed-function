@@ -65,7 +65,7 @@ const _module = {
 
         {
             description: 'The word "tutorial" must appear in metadata description',
-            apply: input => /description:.*tutorial.*/i.test(input)
+            apply: input => commonRules.requireKeywordInMetadataDescription(input, 'tutorial')
         }, 
 
         {

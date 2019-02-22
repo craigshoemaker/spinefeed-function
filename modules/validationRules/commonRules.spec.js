@@ -3,7 +3,7 @@ const commonRules = require('./commonRules');
 const validInput = `
 ---
 title: Azure Functions error handling guidance | Microsoft Docs
-description: Provides general guidance for handling errors that occur in when your functions execute, and links to binding-specific errors topics.
+description: This is a <TYPE>
 services: functions
 cloud: 
 documentationcenter: 
@@ -37,6 +37,12 @@ describe('commonRules => ', () => {
     it('Require customer intent statement', () => {
         const invalid = validInput.replace('# Customer intent', '');
         const results = commonRules.requireCustomerIntent(invalid);
+        expect(results).toBe(false);
+    });
+
+    it('Require keyword in metadata description', () => {
+        const invalid = validInput.replace('description: This is a <TYPE>', 'description: This is a foo article');
+        const results = commonRules.requireKeywordInMetadataDescription(invalid, 'bar');
         expect(results).toBe(false);
     });
 

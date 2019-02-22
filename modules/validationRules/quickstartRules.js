@@ -49,7 +49,12 @@ const _module = {
         {
             description: 'Required metadata: Customer intent statement',
             apply: input => commonRules.requireCustomerIntent(input)
-        }
+        },
+
+        {
+            description: 'The word "quickstart" must appear in metadata description',
+            apply: input => commonRules.requireKeywordInMetadataDescription(input, 'quickstart')
+        }, 
     ],
 
     apply: (input) => ruleApplicator(input, _module)
