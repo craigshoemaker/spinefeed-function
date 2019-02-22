@@ -85,12 +85,6 @@ describe('quickstartRules => ', () => {
             expect(results.brokenRules.includes('"quickstart" is required in the metdata description field')).toBe(true);
         });
 
-        it('missing customer intent statement', () => {
-            const invalid = validInput.replace('Customer intent:', '');
-            const results = rules.apply(invalid);
-            expect(results.brokenRules.includes('Customer intent statement is required in metadata')).toBe(true);
-        });
-
         it('includes a checklist', () => {
             const invalid = validInput.replace('NOT_A_CHECKLIST', '<div class="checklist"></div>');
             const results = rules.apply(invalid);

@@ -40,11 +40,6 @@ const _module = {
         },
 
         {
-            description: 'Customer intent statement is required in metadata',
-            apply: input => /Customer intent:\s.{25,}\n/.test(input)
-        },
-
-        {
             description: 'Checklists are not allowed in a quickstart',
             apply: input => {
                 return !/class="checklist"/.test(input)
