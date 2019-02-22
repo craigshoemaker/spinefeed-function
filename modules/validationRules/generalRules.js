@@ -24,6 +24,12 @@ const _module = {
                 
                 if(links) {
                     const linksMissingExtension = links.filter(link => {
+                        const isBookmark = /^\]\(\#/.test(link);
+
+                        if (isBookmark) {
+                            return false;
+                        }
+                        
                         const ext = link.substr(link.lastIndexOf('.'));
                         const isMarkdown = /md/i.test(ext);
                         const isImage = /jpg|png|gif|svg/i.test(ext);

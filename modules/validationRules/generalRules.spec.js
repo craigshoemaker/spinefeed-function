@@ -22,6 +22,8 @@ ms.service: storage
 
 [test](http://docs.microsoft.com/articles/cosmos-db/table-storage-cloud-service-nodejs)
 
+[bookmark](#bookmark)
+
 ![screenshot](../media/logo.png)
 
 `;
