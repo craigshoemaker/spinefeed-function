@@ -35,6 +35,8 @@ const _module = {
 
     disallowUseOfAlternateArticleDescriptors: (input) => !/In this (guide|article|topic)/.test(input),
 
+    disallowTitlesPrefixedByStep: input => !/\#{2,}\s+Step:?\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|[1-9])/gi.test(input),
+
     linkToFreeAccountBeforeFirstH2 : {
         description: 'Link to free Azure account must come before first H2',
         apply: input =>  {

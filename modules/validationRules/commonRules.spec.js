@@ -66,4 +66,16 @@ describe('commonRules => ', () => {
         expect(results).toBe(false);
     });
 
+    it('Titles may not start with "Step" followed by a number', () => {
+        const invalid = validInput.replace('# Azure Functions error handling', '## Step 9: Azure Functions error handling');
+        const results = commonRules.disallowTitlesPrefixedByStep(invalid);
+        expect(results).toBe(false);
+    });
+
+    it('Titles may not start with "Step" followed by a number (string)', () => {
+        const invalid = validInput.replace('# Azure Functions error handling', '## Step Eight: Azure Functions error handling');
+        const results = commonRules.disallowTitlesPrefixedByStep(invalid);
+        expect(results).toBe(false);
+    });
+
 });
