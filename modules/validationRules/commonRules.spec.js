@@ -60,4 +60,10 @@ describe('commonRules => ', () => {
         expect(results).toBe(false);
     });
 
+    it('Do not introduce doc as guide|topic|article', () => {
+        const invalid = validInput.replace('In this tutorial', 'In this guide');
+        const results = commonRules.disallowUseOfAlternateArticleDescriptors(invalid);
+        expect(results).toBe(false);
+    });
+
 });

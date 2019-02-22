@@ -97,7 +97,8 @@ const _module = {
 
         {
             description: 'Article must be introduced as "In this tutorial"',
-            apply: input => !/In this (guide|article|topic)/.test(input)
+            //apply: input => !/In this (guide|article|topic)/.test(input)
+            apply: input => commonRules.disallowUseOfAlternateArticleDescriptors(input)
         },
 
         {

@@ -33,6 +33,8 @@ const _module = {
         return regex.test(input);
     },
 
+    disallowUseOfAlternateArticleDescriptors: (input) => !/In this (guide|article|topic)/.test(input),
+
     linkToFreeAccountBeforeFirstH2 : {
         description: 'Link to free Azure account must come before first H2',
         apply: input =>  {
