@@ -23,6 +23,8 @@ To complete this quickstart, you need an [Azure subscription](https://azure.micr
 
 In this quickstart, many good things happen.
 
+## Prerequisites
+
 ## Download the sample application
 
 NOT_A_CHECKLIST
@@ -38,6 +40,13 @@ describe('quickstartRules => ', () => {
 
         it('valid document passes all rules', () => {
             const result = rules.apply(validInput);
+            expect(result.total).toEqual(result.passed);
+            expect(result.allPassed).toBe(true);
+        });
+
+        it('Prerequisites are not required', () => {
+            const input = validInput.replace('## Prerequisites', '');
+            const result = rules.apply(input);
             expect(result.total).toEqual(result.passed);
             expect(result.allPassed).toBe(true);
         });
@@ -121,6 +130,13 @@ describe('quickstartRules => ', () => {
             const invalid = validInput.replace('In this quickstart', 'In this article');
             const results = rules.apply(invalid);
             expect(results.brokenRules.includes('Article must not be introduced as a guide|topic|article')).toBe(true);
+        });
+
+        it('Prerequisites must be the first H2', () => {
+            let invalid = validInput.replace('## Prerequisites', '## First H2');
+            invalid = invalid.replace('## Download the sample application', '## Prerequisites');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('Prerequisites must be the first H2')).toBe(true);
         });
     });
 

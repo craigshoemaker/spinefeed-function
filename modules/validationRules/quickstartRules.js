@@ -70,6 +70,24 @@ const _module = {
             description: 'Article must not be introduced as a guide|topic|article',
             apply: input => commonRules.disallowUseOfAlternateArticleDescriptors(input)
         },
+
+        {
+            description: 'Prerequisites must be the first H2',
+            apply: input => {
+                const prereqIndex = input.indexOf('\n## Prerequisites');
+                const firstH2Index = input.indexOf('\n## ');
+
+                let isInRightOrder = true;
+
+                if (prereqIndex > -1) {
+                    isInRightOrder = (prereqIndex === firstH2Index);
+                }
+
+                return isInRightOrder;
+            }
+        },
+
+        
     ],
 
     apply: (input) => ruleApplicator(input, _module)
