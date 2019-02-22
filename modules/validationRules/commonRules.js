@@ -29,7 +29,7 @@ const _module = {
     },
 
     requireKeywordInFirstSentenceAfterFirstParagraph: (input, keyword) => {
-        const regex = new RegExp(`\\#\\s+.*\\n{2,}.+\\n{2,}In this ${keyword}`);
+        const regex = new RegExp(`\\#\\s+.*\\n{2,}.+\\n{2,}In this ${keyword}`, 'i');
         return regex.test(input);
     },
 

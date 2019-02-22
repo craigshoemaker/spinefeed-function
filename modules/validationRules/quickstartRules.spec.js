@@ -3,7 +3,7 @@ const rules = require('./quickstartRules');
 const validInput = `
 ---
 title: Azure Quickstart - Upload, download, and list blobs in Azure Storage using Node.js | Microsoft Docs
-description: In this quickstart, you create a storage account and a container. Then you use the storage client library for Node.js to upload a blob to Azure Storage, download a blob, and list the blobs in a container.
+description: In this quickstart you create a storage account and a container. Then you use the storage client library for Node.js to upload a blob to Azure Storage, download a blob, and list the blobs in a container.
 services: storage
 author: craigshoemaker
 manager: jeconnoc
@@ -20,6 +20,8 @@ ms.author: cshoe
 # Quickstart: Sample quickstart
 
 To complete this quickstart, you need an [Azure subscription](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)
+
+In this quickstart, many good things happen.
 
 ## Download the sample application
 
@@ -79,12 +81,6 @@ describe('quickstartRules => ', () => {
             expect(results.brokenRules.includes('"mstopic: quickstart" is required in metadata')).toBe(true);
         });
 
-        it('missing "quickstart" in ms.description', () => {
-            const invalid = validInput.replace('In this quickstart,', 'In this tutorial,');
-            const results = rules.apply(invalid);
-            expect(results.brokenRules.includes('"quickstart" is required in the metdata description field')).toBe(true);
-        });
-
         it('includes a checklist', () => {
             const invalid = validInput.replace('NOT_A_CHECKLIST', '<div class="checklist"></div>');
             const results = rules.apply(invalid);
@@ -113,6 +109,12 @@ describe('quickstartRules => ', () => {
             const invalid = validInput.replace('title: Azure Quickstart', 'title: Azure Foo');
             const results = rules.apply(invalid);
             expect(results.brokenRules.includes('The word "quickstart" must appear in metadata title')).toBe(true);
+        });
+
+        it('Required sentence after intro paragraph: "In this quickstart"', () => {
+            const invalid = validInput.replace('In this quickstart, many good things happen.', '');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('Required sentence after intro paragraph: "In this quickstart"')).toBe(true);
         });
     });
 
