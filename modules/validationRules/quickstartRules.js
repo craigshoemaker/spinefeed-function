@@ -65,6 +65,11 @@ const _module = {
             description: 'Required sentence after intro paragraph: "In this quickstart"',
             apply: input => commonRules.requireKeywordInFirstSentenceAfterFirstParagraph(input, 'quickstart')
         },
+
+        {
+            description: 'Article must not be introduced as a guide|topic|article',
+            apply: input => commonRules.disallowUseOfAlternateArticleDescriptors(input)
+        },
     ],
 
     apply: (input) => ruleApplicator(input, _module)

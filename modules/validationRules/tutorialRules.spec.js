@@ -138,10 +138,10 @@ describe('tutorialRules => ', () => {
             expect(results.brokenRules.includes('Checklist is required after paragraph that contains "In this tutorial"')).toBe(true);
         });
 
-        it('Article must be introduced as "In this tutorial"', () => {
+        it('Article must not be introduced as a guide|topic|article', () => {
             const invalid = validInput.replace('In this tutorial', 'In this article');
             const results = rules.apply(invalid);
-            expect(results.brokenRules.includes('Article must be introduced as "In this tutorial"')).toBe(true);
+            expect(results.brokenRules.includes('Article must not be introduced as a guide|topic|article')).toBe(true);
         });
 
         it('Titles may not start with "Step" followed by a number', () => {

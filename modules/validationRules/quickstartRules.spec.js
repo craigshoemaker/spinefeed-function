@@ -116,6 +116,12 @@ describe('quickstartRules => ', () => {
             const results = rules.apply(invalid);
             expect(results.brokenRules.includes('Required sentence after intro paragraph: "In this quickstart"')).toBe(true);
         });
+
+        it('Article must not be introduced as a guide|topic|article', () => {
+            const invalid = validInput.replace('In this quickstart', 'In this article');
+            const results = rules.apply(invalid);
+            expect(results.brokenRules.includes('Article must not be introduced as a guide|topic|article')).toBe(true);
+        });
     });
 
 });
