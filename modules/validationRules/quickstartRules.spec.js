@@ -1,4 +1,5 @@
 const rules = require('./quickstartRules');
+const fs = require('fs');
 
 const validInput = `
 ---

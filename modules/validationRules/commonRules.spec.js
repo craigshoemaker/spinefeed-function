@@ -88,4 +88,10 @@ describe('commonRules => ', () => {
         expect(results).toBe(false);
     });
 
+    it('Require nextstepaction even with trailing whitespace after title', () => {
+        const invalid = validInput.replace('## Next steps', '## Next steps ');
+        const results = commonRules.requireNextStepActionFormattedLink(invalid);
+        expect(results).toBe(true);
+    });
+
 });
