@@ -14,6 +14,10 @@ const _module = {
         }
     },
 
+    requireCleanUpResourcesToPreceedNextSteps: input => /(##\s+Clean up resources|\[\!INCLUDE.*cleanup.*\])(.|[\r\n])*\#{2,}\s*Next steps/.test(input),
+
+    requireCleanUpResources: input => /(##\s+Clean up resources)|(\[\!INCLUDE.*cleanup.*\])/.test(input),
+
     requireCustomerIntent: (input) => {
         return /\#\s+customer intent:\s+.+/i.test(input);
     },

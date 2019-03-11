@@ -53,6 +53,12 @@ describe('quickstartRules => ', () => {
             expect(result.total).toEqual(result.passed);
             expect(result.allPassed).toBe(true);
         });
+
+        it('Allow INCLUDE file for "Clean up resources" section', () => {
+            const valid = validInput.replace('## Clean up resources', '[!INCLUDE [Cleanup](includes/signalr-quickstart-cleanup.md)]');
+            const results = rules.apply(valid);
+            expect(results.allPassed).toBe(true);
+        });
     });
 
     describe('fails: ', () => {

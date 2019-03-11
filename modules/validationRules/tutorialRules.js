@@ -25,7 +25,7 @@ const _module = {
 
         {
             description: 'Required section: "Clean up resources"',
-            apply: input => /## ?Clean up resources/.test(input)
+            apply: input => commonRules.requireCleanUpResources(input)
         },
 
         {
@@ -35,7 +35,7 @@ const _module = {
 
         {
             description: '"Clean up resouces" section must appear before "Next steps" section',
-            apply: input => commonRules.stringBefore(input, 'Clean up resources', 'Next steps')
+            apply: input => commonRules.requireCleanUpResourcesToPreceedNextSteps(input)
         },
 
         {

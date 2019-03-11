@@ -26,6 +26,8 @@ This topic provides general guidance for handling errors that occur when your fu
 
 In this tutorial you learn new and wonderful things!
 
+## Clean up resources
+
 ## Next steps
 
 > [!div class="nextstepaction"]
@@ -61,6 +63,12 @@ describe('commonRules => ', () => {
     it('Require keyword in first sentence after first paragraph', () => {
         const invalid = validInput.replace('In this tutorial', 'In this foo');
         const results = commonRules.requireKeywordInFirstSentenceAfterFirstParagraph(invalid, 'tutorial');
+        expect(results).toBe(false);
+    });
+
+    it('Require "Clean up resources" before "Next steps"', () => {
+        const invalid = validInput.replace('Clean up resources', 'Clean up foo');
+        const results = commonRules.requireCleanUpResourcesToPreceedNextSteps(invalid, 'tutorial');
         expect(results).toBe(false);
     });
 
