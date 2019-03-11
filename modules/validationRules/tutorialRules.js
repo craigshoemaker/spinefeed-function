@@ -72,9 +72,9 @@ const _module = {
             description: 'Introductory sentence must be no more than 6 sentences.', 
             apply: input => {
                 let value = false;
-                const introduction = input.match(/\n\#.+\n\n(.*)/);
+                const introduction = input.match(/^-{3,}[\r\n]{1,}\#{1,1}\s*.*[\n\r]*(.*)/m);
                 if (introduction && introduction.length > 0) {
-                  value = introduction[1].match(/\.[ |\n\r]/g).length < 6;
+                  value = introduction[1].match(/\.[\s|\n\r]/g).length < 6;
                 }
                 return value;
             }

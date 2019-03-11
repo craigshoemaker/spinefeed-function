@@ -20,7 +20,7 @@ ms.author: cshoe
 
 # Quickstart: Sample quickstart
 
-To complete this quickstart, you need an [Azure subscription](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)
+To complete this quickstart, you need an [Azure subscription](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
 In this quickstart, many good things happen.
 
