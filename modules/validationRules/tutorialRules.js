@@ -92,7 +92,7 @@ const _module = {
 
         {
             description: 'Checklist is required after paragraph that contains "In this tutorial"',
-            apply: input => /In this tutorial.+\n{2,}\> \[\!div class=\"checklist\"\]/.test(input)
+            apply: input => /In this tutorial.+\n{2,}\> \[\!div class=\"checklist\"\]/g.test(input)
         },
 
         {
