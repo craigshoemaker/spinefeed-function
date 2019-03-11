@@ -74,7 +74,7 @@ const _module = {
                 let value = false;
                 const introduction = input.match(/\n\#.+\n\n(.*)/);
                 if (introduction && introduction.length > 0) {
-                  value = introduction[1].match(/\.\s/g).length < 6;
+                  value = introduction[1].match(/\.[ |\n\r]/g).length < 6;
                 }
                 return value;
             }
