@@ -29,8 +29,9 @@ const _module = {
     },
 
     requireKeywordInFirstSentenceAfterFirstParagraph: (input, keyword) => {
-        const regex = new RegExp(`\\#\\s+.*\\n{2,}.+\\n{2,}In this ${keyword}`, 'i');
-        return regex.test(input);
+        const regex = new RegExp(`^-{3,}[\\r\\n]{1,}\\#{1,1}\\s+(.|[\\r\\n])*?In this ${keyword}`, 'm');
+        const result =  regex.test(input);
+        return result;
     },
 
     requireNextStepActionFormattedLink: input => {

@@ -13,6 +13,10 @@ ms.topic: tutorial
 
 Sentence number one. Sentence number two. Sentence number three. Sentence number four. Sentence number five. Sentence number six.
 
+* bullet one
+* bullet two
+* bullet three
+
 In this tutorial you learn to work with Azure.
 
 > [!div class="checklist"]
