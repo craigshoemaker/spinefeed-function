@@ -72,7 +72,7 @@ const _module = {
             description: 'Introductory sentence must be no more than 6 sentences.', 
             apply: input => {
                 let value = false;
-                const groups = input.match(/\n\#.+\n\n(.*)/);
+                const groups = input.match(/\n\#{1}((\s+.*)*)\s\#/);
                 if (groups && groups.length > 0) {
                     const introduction = groups[1].trim();
                     const sentences = introduction.split('. ');
