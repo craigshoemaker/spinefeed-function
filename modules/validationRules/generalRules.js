@@ -24,6 +24,8 @@ const _module = {
                 
                 if(links) {
                     const linksMissingExtension = links.filter(link => {
+                        link = link.replace(/\?.*/, '');
+                        
                         const isBookmark = /^\]\(\#/.test(link);
 
                         if (isBookmark) {

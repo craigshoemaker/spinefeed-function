@@ -45,6 +45,12 @@ describe('general rules => ', () => {
             expect(results.brokenRules.includes('H1 title must immediately follow metadata')).toBe(false);
         });
 
+        it('relative links with toc location', () => {
+            const invalid = validInput.replace(/\.md/g, '.md?toc=%2fcli%2fazure%2ftoc.json');
+            const results = generalRules.apply(invalid);
+            expect(results.brokenRules.includes('Relative links must end with the ".md" extension')).toBe(false);
+        });
+
     });
 
     describe('fails', () => {
