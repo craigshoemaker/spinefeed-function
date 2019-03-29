@@ -39,7 +39,7 @@ const _module = {
     },
 
     requireNextStepActionFormattedLink: input => {
-        const result = /\#\s+Next steps\s{0,}\n{1,}.*nextstepaction/.test(input);
+        const result = /\#\s+Next steps(\s+.*)*nextstepaction/.test(input);
         return result;
     },
 
