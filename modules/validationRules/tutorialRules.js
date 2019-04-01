@@ -71,12 +71,35 @@ const _module = {
         {
             description: 'Introductory sentence must be no more than 6 sentences.', 
             apply: input => {
+
+                const compactArray = array => array.filter(x => x);
+
                 let value = false;
-                const introduction = input.match(/^-{3,}[\r\n]{1,}\#{1,1}\s*.*[\n\r]*(.*)/m);
-                if (introduction && introduction.length > 0) {
-                  value = introduction[1].match(/\.[\s|\n\r]/g).length < 6;
+
+                const metadataPattern = /-{3}\s+([\s\S])+?-{3}/;
+                input = input.replace(metadataPattern, '');
+                input = input.trim();
+
+                let paragraphs = input.split('#');
+                paragraphs = compactArray(paragraphs);
+                if (paragraphs.length >= 1) {
+
+                    let firstParagraph = paragraphs[0];
+                    const firstLinePattern = /.*[\r\n]/;
+                    firstParagraph = firstParagraph.replace(firstLinePattern, ''); // strip title
+                    firstParagraph = firstParagraph.trim();
+                    let matches = firstParagraph.match(firstLinePattern);
+
+                    if (matches && matches.length >= 1) {
+                        const introduction = matches[0].trim();
+                        let sentences = introduction.split('.');
+                        sentences = compactArray(sentences);
+                        value = sentences.length <= 6;
+                    }
                 }
+
                 return value;
+
             }
         },
 
