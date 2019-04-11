@@ -48,6 +48,19 @@ describe('commonRules => ', () => {
         expect(results).toBe(false);
     });
 
+    it('Allow no space between hash and customer intent statement', () => {
+        const valid = validInput.replace('# Customer intent', '#Customer intent');
+        const results = commonRules.requireCustomerIntent(valid);
+        expect(results).toBe(true);
+    });
+
+    it('Allow arbitrary numbers of spaces between hash and customer intent statement', () => {
+        const valid = validInput.replace('# Customer intent', '#         Customer intent');
+        const results = commonRules.requireCustomerIntent(valid);
+        expect(results).toBe(true);
+    });
+
+
     it('Require keyword in metadata description', () => {
         const invalid = validInput.replace('description: This is a <TYPE>', 'description: This is a foo article');
         const results = commonRules.requireKeywordInMetadataDescription(invalid, 'bar');

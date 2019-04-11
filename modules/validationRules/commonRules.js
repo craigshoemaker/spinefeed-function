@@ -19,7 +19,7 @@ const _module = {
     requireCleanUpResources: input => /(##\s+Clean up resources)|(\[\!INCLUDE.*cleanup.*\])/.test(input),
 
     requireCustomerIntent: (input) => {
-        return /\#\s+customer intent:\s+.+/i.test(input);
+        return /\#(\s+)?customer intent:\s+.+/i.test(input);
     },
 
     requireKeywordInMetadataDescription: (input, keyword) => {
