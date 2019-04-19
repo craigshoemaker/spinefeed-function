@@ -39,7 +39,12 @@ const _module = {
     },
 
     requireNextStepActionFormattedLink: input => {
-        const result = /\#\s+Next steps(\s+.*)*nextstepaction/.test(input);
+        let result = false;
+        const matches = input.match(/\#\s+Next steps(\s+.*)*/);
+        if(matches && matches.length > 0) {
+            const fragment = matches[0];
+            result = fragment.indexOf('nextstepaction') > 0;
+        }
         return result;
     },
 
