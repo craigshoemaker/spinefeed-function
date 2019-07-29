@@ -59,6 +59,12 @@ describe('general rules => ', () => {
             expect(results.brokenRules.includes('Relative links must end with the ".md" extension')).toBe(false);
         });
 
+        it('code blocks that resemble relative links', () => {
+            const valid = validInput.replace('[yaml](./test.yml)', 'return!0!==c&&t["_"+r]({message:e,url:n,lineNumber:i,columnNumber:a,error:s}),c},');
+            const results = generalRules.apply(valid);
+            expect(results.brokenRules.includes('Relative links must end with the ".md" extension')).toBe(false);
+        });
+
     });
 
     describe('fails', () => {
@@ -80,6 +86,7 @@ describe('general rules => ', () => {
             const results = generalRules.apply(invalid);
             expect(results.brokenRules.includes('Relative links must end with the ".md" extension')).toBe(true);
         });
+
     });
 
 });

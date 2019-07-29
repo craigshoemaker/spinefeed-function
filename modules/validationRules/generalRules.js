@@ -31,7 +31,12 @@ const _module = {
                         const isBookmark = /^\]\(\#/.test(link);
                         const isEmail = EMAIL_PATTERN.test(link);
 
-                        if (isBookmark || isEmail) {
+                        // Test data included the following string which matched the link regex:
+                        //    return!0!==c&&t["_"+r]({message:e,url:n,lineNumber:i,columnNumber:a,error:s}),c},
+                        // The following pattern looks for { or , to filter out false positives on code blocks.
+                        const isCode = /\(.*({|,)/g.test(link);
+
+                        if (isBookmark || isEmail || isCode) {
                             return false;
                         }
                         
