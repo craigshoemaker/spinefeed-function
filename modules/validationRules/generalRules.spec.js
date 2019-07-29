@@ -28,6 +28,20 @@ ms.service: storage
 
 ![screenshot](../media/logo.png)
 
+[email](mailto:test@test.com)
+
+[relative](./doc.md)
+
+[yml](./file.yml)
+
+![jpg](./media/screenshot.jpg)
+
+![png](./media/screenshot.png)
+
+![gif](./media/screenshot.gif)
+
+
+
 `;
 
 
