@@ -20,7 +20,7 @@ ms.service: storage
 
 [test](~/articles/cosmos-db/table-storage-cloud-service-nodejs.md)
 
-[link to yaml file](~/articles/cosmos-db/test.yml)
+[yaml](./test.yml)
 
 [test](http://docs.microsoft.com/articles/cosmos-db/table-storage-cloud-service-nodejs)
 
@@ -50,6 +50,12 @@ describe('general rules => ', () => {
         it('relative links with toc location', () => {
             const invalid = validInput.replace(/\.md/g, '.md?toc=%2fcli%2fazure%2ftoc.json');
             const results = generalRules.apply(invalid);
+            expect(results.brokenRules.includes('Relative links must end with the ".md" extension')).toBe(false);
+        });
+
+        it('mailto links to email addresses', () => {
+            const valid = validInput.replace('[yaml](./test.yml)', '[email](mailto:test@test.com)');
+            const results = generalRules.apply(valid);
             expect(results.brokenRules.includes('Relative links must end with the ".md" extension')).toBe(false);
         });
 

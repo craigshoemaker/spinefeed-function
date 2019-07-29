@@ -1,5 +1,7 @@
 const ruleApplicator = require('./ruleApplicator');
 
+const EMAIL_PATTERN = /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i;
+
 const _module = {
 
     type: 'General',
@@ -27,8 +29,9 @@ const _module = {
                         link = link.replace(/\?.*/, '');
                         
                         const isBookmark = /^\]\(\#/.test(link);
+                        const isEmail = EMAIL_PATTERN.test(link);
 
-                        if (isBookmark) {
+                        if (isBookmark || isEmail) {
                             return false;
                         }
                         
