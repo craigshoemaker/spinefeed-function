@@ -32,10 +32,14 @@ const _module = {
                             return false;
                         }
                         
-                        const ext = link.substr(link.lastIndexOf('.'));
+                        const ext = link.substr(link.lastIndexOf('.'))
+                                        .replace(')', '')
+                                        .trim();
+
                         const isMarkdown = /md/i.test(ext);
                         const isImage = /jpg|png|gif|svg/i.test(ext);
-                        return !isImage && !isMarkdown;
+                        const isYaml = /yml/i.test(ext);
+                        return !isImage && !isMarkdown && !isYaml;
                     });
 
                     returnValue = linksMissingExtension.length === 0;

@@ -20,6 +20,8 @@ ms.service: storage
 
 [test](~/articles/cosmos-db/table-storage-cloud-service-nodejs.md)
 
+[link to yaml file](~/articles/cosmos-db/test.yml)
+
 [test](http://docs.microsoft.com/articles/cosmos-db/table-storage-cloud-service-nodejs)
 
 [bookmark](#bookmark)
