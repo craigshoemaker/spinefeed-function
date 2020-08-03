@@ -3,6 +3,6 @@
   "description": "Spinefeed provides Content Model feedback for quickstart, overview and tutorial articles.",
   "categories": ["Validation"],
   "languages": ["JavaScript"],
-  "technologies": ["Functions", "Node.js"]
+  "technologies": ["Functions", "Node.js"],
   "version": 1
 }
